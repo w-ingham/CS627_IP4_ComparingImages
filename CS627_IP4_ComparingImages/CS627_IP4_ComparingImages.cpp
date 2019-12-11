@@ -3,8 +3,12 @@
 #include "pch.h"
 #include <iostream>
 using namespace std;
-
-int const jCol = 4;
+/*
+ *I wanted to use global constants instead of integer values
+ *for the matrix dimensions to eliminate any possibility of spaghetti code
+ *and to also make the logical expressions easier to read
+ */
+int const jCol = 4;  
 int const jRow = 4;
 int const kCol = 4;
 int const kRow = 5;
@@ -16,20 +20,38 @@ int comparison(int image1[], int image2[], int i, int j, int k)
 	i = 0;// needs to increment 16
 	j = 0;//needs to increment 16
 	k = 0;// needs to increment 20, skipping 1 space after every 4th element
+	int tempRow = jRow;
 
+	
 	if (jTotal<kTotal)
 	{
+		cout << "The Array";
 		while (j<jTotal)
 		{
-			
-			for(j = 0; j<jCol; j++)
+			cout << endl;
+			for(j; j<tempRow; j++)
 			{
-				cout << image1[j]<<" ";
-				cout << image2[k];
+				if(image1[j]==image2[k])
+				{
+					cout << "0";
+				}
+				else
+				{
+					cout << "-1";
+				}
+				k++;//skips k array index after every 4th step since k has more columns than j
+			}
+			if (tempRow<jTotal)
+			{
+				tempRow = tempRow + jCol;
 				k++;
 			}
-			//k++;
-			return 0;
+			else
+			{
+				return 0;
+			}
+			
+			
 		}
 		
 	}
