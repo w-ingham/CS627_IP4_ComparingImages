@@ -15,7 +15,7 @@ int const kRow = 5;
 int const jTotal = jCol * jRow; // (image 1 row) x (image 1 column) = the total elements in image 1 array
 int const kTotal = kCol * kRow; // (image 2 row) x (image 2 column) = the total elements in image 2 array
 
-int comparison(int image1[], int image2[], int i, int j, int k)
+int comparison(int arr1[], int arr2[], int i, int j, int k)
 { 
 	i = 0;// needs to increment 16
 	j = 0;//needs to increment 16
@@ -23,46 +23,42 @@ int comparison(int image1[], int image2[], int i, int j, int k)
 	int tempRow = jRow;
 
 	
-	if (jTotal<kTotal)
+	if (jTotal<=kTotal)
 	{
-		cout << "The Array";
+		int ctr = 1;
+		cout << "--- Array Comparison ---";
 		while (j<jTotal)
 		{
-			cout << endl;
+			cout << "\n\nrow "<< ctr <<": " << endl;
 			for(j; j<tempRow; j++)
 			{
-				if(image1[j]==image2[k])
+				if(arr1[j]==arr2[k])
 				{
-					cout << "0";
+					cout << "  0";
 				}
 				else
 				{
-					cout << "-1";
+					cout << " -1";
 				}
-				k++;//skips k array index after every 4th step since k has more columns than j
+				k++;
 			}
 			if (tempRow<jTotal)
 			{
 				tempRow = tempRow + jCol;
-				k++;
+				k++; //skips k array index after every 4th step since k has more columns than j
+				ctr++;
 			}
 			else
 			{
 				return 0;
-			}
-			
-			
-		}
-		
-	}
-	else if (j > k)
-	{
-		cout << "j > k";
+			}			
+		}	
 	}
 	else
 	{
-		cout << "j == k";
+
 	}
+
 	
 	return 0;
 }
@@ -72,7 +68,7 @@ int main()
 {
 	int i = 0, j = 0, k = 0;
 	//        [c][r]
-	int image1[jCol][jRow] = { {0,1,1,0}, {0,1,0,1}, {0,1,1,0}, {1,0,1,1} };
-	int image2[kCol][kRow] = { {0,1,0,0,1}, {0,1,1,1,0}, {1,1,1,0,1}, {1,0,1,1,0} };
-	comparison(image1[j], image2[k], i, j, k);
+	int arr1[jCol][jRow] = { {0,1,1,0}, {0,1,0,1}, {0,1,1,0}, {1,0,1,1} };
+	int arr2[kCol][kRow] = { {0,1,0,0,1}, {0,1,1,1,0}, {1,1,1,0,1}, {1,0,1,1,0} };
+	comparison(arr1[j], arr2[k], i, j, k);
 }
